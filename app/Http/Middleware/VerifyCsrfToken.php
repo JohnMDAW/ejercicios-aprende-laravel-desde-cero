@@ -15,5 +15,7 @@ class VerifyCsrfToken extends Middleware
         '/ejercicio1',
         '/ejercicio2/*',
         '/ejercicio3',
+        '/change-password',
+        '/contacts'
     ];
 }
