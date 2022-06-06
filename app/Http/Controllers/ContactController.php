@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ContactController extends Controller
 {
@@ -35,8 +36,12 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        Contact::create($request->all());
-
+        if(is_null($request->get('name'))){
+            return Response::redirectTo('/contacts/create')->withErrors([
+                'name' => 'This field is required',
+            ]);
+        }
+        
         return response("Contact created");
     }
 
